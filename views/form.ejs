@@ -1,0 +1,37 @@
+<form>
+  <% for( let i = 0; i < 5; i++ ) { %>
+    <input 
+      class="title" 
+      type="text" 
+      placeholder="title"
+    >
+  <% } %>
+</form>
+
+
+<script>
+  
+  $('input').each((i, el) => {
+    console.log(el)
+    $(el).on('focus', (e) => {
+      // $(e.target).css('background', 'red')
+      e.target.style.background = 'red';
+    })
+    $(el).on('focusout', (e) => {
+      $(e.target).css('background', 'inherit')
+    })
+  })
+
+  // const allInput = document.querySelectorAll('input');
+  // console.log(allInput)
+  // allInput.forEach(input => {
+  //   input.addEventListener('focus', (e) => {
+  //     e.target.style.background = 'red';
+  //   });
+  //   input.addEventListener('focusout', (e) => {
+  //     e.target.style.background = 'inherit';
+  //   })
+  // })
+
+
+</script>
