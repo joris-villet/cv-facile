@@ -1,25 +1,37 @@
 <form>
-  <% for( let i = 0; i < 5; i++ ) { %>
     <input 
-      class="title" 
+      class="title"
       type="text" 
       placeholder="title"
     >
-  <% } %>
+    <input 
+      class="subTitle"
+      type="text" 
+      placeholder="title"
+    >
 </form>
 
 
 <script>
   
   $('input').each((i, el) => {
-    console.log(el)
+
     $(el).on('focus', (e) => {
-      // $(e.target).css('background', 'red')
       e.target.style.background = 'red';
     })
+
     $(el).on('focusout', (e) => {
       $(e.target).css('background', 'inherit')
     })
+
+    $('.title').on('input', (e) => {
+      $('.sheet__title').text(e.target.value)
+    })
+
+    $('.subTitle').on('input', (e) => {
+      $('.sheet__subTitle').text(e.target.value)
+    })
+
   })
 
   // const allInput = document.querySelectorAll('input');
