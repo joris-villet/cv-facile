@@ -1,4 +1,48 @@
 
-<aside>
-  aside
+<aside class="sidebar">
+  <button class="sidebar__btn">&#x27A1;</button>
+  <%- include ('form') %> 
+
+
+  <button class="sidebar__btn--pdf">Générer pdf</button>
 </aside>
+
+
+
+<script>
+  let sidebarActive = false;
+  $('.sidebar__btn').on('click', (e) => {
+    if (!sidebarActive) {
+      $('.sidebar').css('left', '0');
+      sidebarActive = true;
+    }
+    else {
+      $('.sidebar').css('left', '-350px'); 
+      sidebarActive = false;
+    }
+  })
+
+</script>
+
+
+<style>
+  aside {
+    background: rgb(73,147,223);
+    background: linear-gradient(145deg, rgba(73,147,223,1) 23%, rgba(73,86,145,1) 61%, rgba(39,43,73,1) 100%); 
+    width: 400px;
+    height: 100%;
+    position: relative;
+    left: -350px;
+    transition: .5s ease-in-out;
+    box-shadow: 5px 5px 5px #b3b3b3;
+  }
+
+  .sidebar__btn {
+    position: absolute;
+    top: .5rem;
+    right: .5rem;
+    cursor: pointer;
+  }
+
+
+</style>

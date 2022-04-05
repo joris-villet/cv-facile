@@ -1,0 +1,55 @@
+.form
+  display: none
+  opacity: 0
+  margin: 0 auto
+  border: 1px solid red
+
+  &__coor
+    border: 2px solid orange
+    margin: 2rem auto
+
+  &__label
+    display: grid
+    width: 100%
+    margin-bottom: 1rem
+
+  &__title
+    border-radius: 30px
+    height: 25px
+    border: none
+    padding-left: 1rem
+    font-weight: bold
+    font-style: italic
+    outline: none
+    color: #7d7d7d
+
+    &::placeholder
+      font-weight: bold
+      color: #7d7d7d
+      
+  &__subtitle
+    border-radius: 30px
+    height: 25px
+    border: none
+    padding-left: 1rem
+    font-weight: bold
+    font-style: italic
+    outline: none
+    color: #7d7d7d
+
+    &::placeholder
+      font-weight: bold
+      color: #7d7d7d
+
+
+
+.form--active
+  animation: .4s ease-in-out slideUp 
+
+@keyframes slideUp
+  0%
+    transform: scale(0.7)
+    opacity: 0
+  100%
+    transform: scale(1)
+    opacity: 1

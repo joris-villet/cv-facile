@@ -1,0 +1,18 @@
+.sidebar {
+  background: #4993df;
+  background: linear-gradient(151deg, #4993df 23%, #495691 61%, #272b49 100%);
+  -webkit-box-shadow: 5px 0px 5px #918c8c;
+          box-shadow: 5px 0px 5px #918c8c;
+  position: relative;
+  -webkit-transition: .4s ease-in-out;
+  transition: .4s ease-in-out;
+  padding: 2rem;
+}
+
+.sidebar__btn {
+  position: absolute;
+  right: 1rem;
+  top: .5rem;
+  cursor: pointer;
+}
+/*# sourceMappingURL=sidebar.css.map */

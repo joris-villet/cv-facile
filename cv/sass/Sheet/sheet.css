@@ -1,0 +1,28 @@
+.sheet {
+  background: #fff;
+  width: 827px;
+  height: 1170px;
+  -webkit-box-shadow: 1px 1px 1px #ddd;
+          box-shadow: 1px 1px 1px #ddd;
+}
+
+.sheet__title {
+  position: relative;
+  left: 0;
+  margin: 0;
+  background: red;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+}
+
+.sheet__subtitle {
+  position: relative;
+  left: 0;
+  margin: 0;
+  background: green;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+}
+/*# sourceMappingURL=sheet.css.map */

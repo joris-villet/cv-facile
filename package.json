@@ -1,18 +1,23 @@
 {
-  "name": "coffee-jquery-webcomponents",
+  "name": "cv-facile",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "compil": "browserify ./public/js/main.js > ./public/js/bundle.js"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "coffeeify": "^3.0.1",
     "coffeescript": "^2.6.1"
   },
   "dependencies": {
     "ejs": "^3.1.6",
     "express": "^4.17.3",
-    "jquery": "^3.6.0"
+    "jquery": "^3.6.0",
+    "jspdf": "^2.5.1",
+    "store2": "^2.13.2"
   }
 }
