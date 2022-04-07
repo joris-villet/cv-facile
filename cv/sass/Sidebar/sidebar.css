@@ -7,6 +7,7 @@
   -webkit-transition: .4s ease-in-out;
   transition: .4s ease-in-out;
   padding: 2rem;
+  height: 100%;
 }
 
 .sidebar__btn {

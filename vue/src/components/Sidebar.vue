@@ -1,0 +1,35 @@
+<script setup>
+import { ref } from 'vue'
+import Form from './Form.vue'
+
+const active = ref(false)
+
+</script>
+
+
+<template>
+  <aside class="sidebar">
+    <button class="sidebar__btn" @click="active = !active; $emit('open-sidebar', active)">click</button>
+    <Form />
+  </aside>
+</template>
+
+
+<style lang="stylus" scoped>
+
+.sidebar
+  background: rgb(73,147,223);
+  background: linear-gradient(151deg, rgba(73,147,223,1) 23%, rgba(73,86,145,1) 61%, rgba(39,43,73,1) 100%)
+  box-shadow: 5px 0px 5px #918c8c
+  position: relative
+  // right: 18rem
+  transition: .4s ease-in-out
+  padding: 2rem
+  height: 100%
+
+  &__btn
+    position: absolute
+    right: 1rem
+    top: .5rem
+    cursor: pointer
+</style>

@@ -3,52 +3,71 @@ import * as store from 'store2'
 import coor from '../coor.js';
 import $ from 'jquery'
 import '../sass/Form/form.css'
+import { jsPDF } from "jspdf";
+
+
+const options = [
+  { value: 'sheet__title', content: 'title principal'},
+  { value: 'sheet__subtitle', content: 'sous-titre optionnel'},
+]
+
 
 const Form = () => html`
   <form class="form">
     <label class="form__label">
-      <input class="form__title" type="type" placeholder="Titre principal">
+      <input id="title" class="form__title" type="type" placeholder="Titre principal">
     </label>
     <label class="form__label">
       <input class="form__subtitle" type="type" placeholder="Sous-titre optionel">
     </label>
 
-    <!-- <select class="form__select">
+    <select id="inputSelect" class="form__select">
       <option>Choisir un élément à déplacer</option>
-      <option value="sheet__title">titre principal</option>
-      <option value="sheet__subtitle">sous-titre</option>
-    </select> -->
-    <select class="form__select">
-  
-      <option>Choisir un élément à déplacer</option>
+      ${options.map(el => html`
+        <option value="${el.value}">${el.content}</option>
+      `)}
     </select>
 
     <div class="form__coor">
       <label class="form__label"> Axe x
-        <input disabled class="form__range x" type="range" value="0" min="0" max="827">
+        <input disabled class="form__range x" type="range" value="0" min="0" max="595">
       </label>
   
       <label class="form__label"> Axe y
-        <input disabled class="form__range y" type="range" value="0" min="0" max="1170">
+        <input disabled class="form__range y" type="range" value="0" min="0" max="841">
       </label>
     </div>
 
-    <!-- <button class="form__btn">get store</button> -->
+    <label class="form__label">
+      <textarea class="form__textarea"></textarea>
+    </label>
+
+    <div>
+      <button id="btnAddText">Ajouter un bloc de texte</button>
+    </div>
+
+    <button id="btnGetStore" class="form__btn">get store</button>
   </form>
 `;
 
+
 window.addEventListener('DOMContentLoaded', () => {
-
-  const options = [
-    { value: 'sheet__title', content: 'title principal'},
-    { value: 'sheet__subtitle', content: 'sous-titre optionnel'},
-  ]
-
 
   let elementWidth = null;
   let elementHeigth = null;
   let classTarget = null;
   let selected = "";
+
+  const heightSheet = $('.sheet').height();
+  const widthSheet = $('.sheet').width();
+  console.log(heightSheet);
+  console.log(widthSheet);
+
+  btnAddText.onclick = (e) => {
+    e.preventDefault()
+    // const input = () => html``;
+  }
+  
 
   $('input').each((i, el) => {
     $(el).on('input', (e) => {
@@ -71,11 +90,11 @@ window.addEventListener('DOMContentLoaded', () => {
 
       store.set(classTarget, {
         val: $('.' + classTarget).text(),
-        x: e.target.value, 
+        x: parseInt(e.target.value, 10), 
         y: coor[elem].pos.y 
       })
   
-      let maxRange = (827 - elementWidth);
+      let maxRange = (595 - elementWidth);
       // console.log("maxRange => ", maxRange)
   
       if (coor[elem].pos.x >= maxRange) {
@@ -91,21 +110,19 @@ window.addEventListener('DOMContentLoaded', () => {
       store.set(classTarget, { 
         val: $('.' + classTarget).text(),
         x: coor[elem].pos.x, 
-        y: e.target.value 
+        y: parseInt(e.target.value, 10) + elementHeigth
       })
   
-      let maxRange = (1170 - elementHeigth);
-      console.log("maxRange => ", maxRange)
+      let maxRange = (841 - elementHeigth);
+      console.log("maxRange => ", maxRange);
   
       if (coor[elem].pos.y >= maxRange) {
         return $('.' + classTarget).css("top", maxRange + 'px')
       }
     }
-
-
   }
 
-  $('.form__select').on('input', (e) => {
+  inputSelect.oninput = (e) => {
     selected = e.target.value;
     // console.log("selected => ", selected)
     elementWidth = Math.round($('.' + selected).width());
@@ -119,15 +136,28 @@ window.addEventListener('DOMContentLoaded', () => {
 
     // console.log("targetToMove => ", classTarget)
     $('.form__range').on('input', moveElement)
+  }
 
+  btnGetStore.onclick = (e) => {
+    e.preventDefault();
+    console.log('click')
 
-    // $('.form__btn').on('click', (e) => {
-    //   e.preventDefault()
-    //   console.log(store.getAll())
-    // })
+    const doc = new jsPDF({
+      unit: "px",
+      format: [595, 841]
+    });
 
+    store((elem, data) => {
+      // console.log(elem, data)
+      console.log(data.val, data.x, data.y)
+      // console.log(elementHeigth)
+      doc.text(data.val, 500, data.y + 10);
+      doc.save("a4.pdf");
+      store.clearAll()
+    });
 
-  })
+    
+  }
 
 })
 

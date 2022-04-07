@@ -1,26 +1,25 @@
 .sheet {
   background: #fff;
-  width: 827px;
-  height: 1170px;
+  width: 595px;
+  height: 841px;
   -webkit-box-shadow: 1px 1px 1px #ddd;
           box-shadow: 1px 1px 1px #ddd;
+  position: relative;
 }
 
 .sheet__title {
-  position: relative;
-  left: 0;
+  position: absolute;
+  left: 0px;
   margin: 0;
-  background: red;
   width: -webkit-max-content;
   width: -moz-max-content;
   width: max-content;
 }
 
 .sheet__subtitle {
-  position: relative;
-  left: 0;
+  position: absolute;
+  left: 0px;
   margin: 0;
-  background: green;
   width: -webkit-max-content;
   width: -moz-max-content;
   width: max-content;
