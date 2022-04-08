@@ -15,10 +15,11 @@ app.use(cors('*'))
 app.use(express.static('public'))
 
 // app.use(express.static(__dirname + '/cv/dist'));
-app.use(express.static(__dirname + '/vue/dist'));
+// app.use(express.static(__dirname + '/vue/dist'));
 
 app.get('/', (req, res) => {
-  res.sendFile('/index.html')
+  //res.sendFile('/index.html')
+  res.render('app')
 })
 
 app.listen(port, () => {
